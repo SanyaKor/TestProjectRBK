@@ -81,6 +81,8 @@ void WordsGen(const int AmountOfWords = 100000){
     size_t length;
     std::ofstream outfile;
     srand(time(NULL));
+    //srand(SEED);
+
     outfile.open(FILE_NAME);
     outfile.clear();
 
