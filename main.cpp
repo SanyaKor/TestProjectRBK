@@ -11,14 +11,11 @@
 
 
 
-bool compare (std::pair<std::string, int>& Node1, std::pair<std::string, int>& Node2)
-{
-    return Node1.second > Node2.second;
-}
+
 
 void MostFrequentWords(){
-    std::map<std::string, int> Tree;
-    std::vector<std::pair<std::string, int > > SortWords;
+    std::map< std::string, int > Tree;
+    std::vector< std::pair < std::string, int > > TopNWords(TOP_WORDS);
 
     std::ifstream InputStream;
 
@@ -46,15 +43,21 @@ void MostFrequentWords(){
         }
     }
 
-    for(const auto& node: Tree){
-        SortWords.push_back(std::make_pair(node.first, node.second));
-    }
 
-    std::sort(SortWords.begin(), SortWords.end(), compare);
+    std::partial_sort_copy(Tree.begin(),
+                           Tree.end(),
+                           TopNWords.begin(),
+                           TopNWords.end(),
+                           [](std::pair<const std::string, int> const& Node1,
+                               std::pair<const std::string, int> const& Node2)
+                               {
+                                   return Node1.second > Node2.second;
+                               }
+                           );
 
     std::cout << "TOP " << TOP_WORDS << " " << "WORDS" << std::endl;
-    for(int i=0; i< TOP_WORDS; i++){
-        std::cout << " " << i << ") \" "<< SortWords[i].first << " \": " << SortWords[i].second << std::endl;
+    for(int i=0; i < TOP_WORDS; i++){
+        std::cout << " " << i << ") \" "<< TopNWords[i].first << " \": " << TopNWords[i].second << std::endl;
     }
 
     std::cout << "----------------" << std::endl;
