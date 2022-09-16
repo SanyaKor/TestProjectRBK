@@ -3,7 +3,7 @@
 #include <fstream>
 #include <map>
 #include <vector>
-
+#include <algorithm>
 
 #define FILE_NAME "tests.txt"
 #define TOP_WORDS 10
