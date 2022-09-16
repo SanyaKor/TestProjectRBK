@@ -10,10 +10,8 @@
 #define SEED 1242
 
 
-
-
-
 void MostFrequentWords(){
+
     std::map< std::string, int > Tree;
     std::vector< std::pair < std::string, int > > TopNWords(TOP_WORDS);
 
@@ -49,13 +47,14 @@ void MostFrequentWords(){
                            TopNWords.begin(),
                            TopNWords.end(),
                            [](std::pair<const std::string, int> const& Node1,
-                               std::pair<const std::string, int> const& Node2)
-                               {
-                                   return Node1.second > Node2.second;
-                               }
+                           std::pair<const std::string, int> const& Node2)
+                           {
+                               return Node1.second > Node2.second;
+                           }
                            );
 
     std::cout << "TOP " << TOP_WORDS << " " << "WORDS" << std::endl;
+
     for(int i=0; i < TOP_WORDS; i++){
         std::cout << " " << i << ") \" "<< TopNWords[i].first << " \": " << TopNWords[i].second << std::endl;
     }
@@ -63,8 +62,8 @@ void MostFrequentWords(){
     std::cout << "----------------" << std::endl;
 }
 
-std::string randomWord( size_t length )
-{
+std::string randomWord( size_t length ){
+
     auto randchar = []() -> char
     {
         const char charset[] =
